@@ -1,6 +1,0 @@
-.card-title { font-size: 30rpx; font-weight: 600; margin-bottom: 14rpx; }
-.goal-num { font-size: 52rpx; font-weight: 800; color: #e8590c; margin-right: 14rpx; }
-.desc { line-height: 1.6; margin-bottom: 14rpx; }
-.endpoint { background: #f6f8f6; border-radius: 16rpx; padding: 18rpx 22rpx; margin-bottom: 20rpx; font-size: 26rpx; }
-.status { margin-top: 14rpx; }
-.danger { color: #e03131; background: #ffe9e9; margin: 10rpx 24rpx 50rpx; }
