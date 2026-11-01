@@ -1,25 +1,14 @@
+const store = require('./utils/store.js')
+
 App({
   globalData: {
-    // 待识别的图片路径（首页选图后写入，结果页读取，避免 URL 传参过长）
-    pendingImage: "",
-    // 本次识别是否为演示模式
-    pendingDemo: false
+    // 从首页拍照后传给 result 页的待确认记录
+    pendingMeal: null,
+    // food-picker 页选中的食物，回传给 result 页
+    pickedFood: null
   },
+
   onLaunch() {
-    // 初始化本地设置默认值
-    if (!wx.getStorageSync("settings")) {
-      const config = require("./config.js");
-      wx.setStorageSync("settings", {
-        dailyGoal: config.defaultDailyGoal,
-        recognizeEndpoint: config.recognizeEndpoint
-      });
-    }
-  },
-  getSettings() {
-    const config = require("./config.js");
-    return wx.getStorageSync("settings") || {
-      dailyGoal: config.defaultDailyGoal,
-      recognizeEndpoint: config.recognizeEndpoint
-    };
+    store.ensureProfile()
   }
-});
+})

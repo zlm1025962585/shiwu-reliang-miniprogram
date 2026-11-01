@@ -1,31 +1,116 @@
 page {
-  background: #f6f8f6;
-  color: #243024;
-  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #FFF6E9;
+  color: #2F2A26;
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 28rpx;
+  line-height: 1.5;
 }
+
+view,
+text {
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24rpx 28rpx 60rpx;
+  background: #FFF6E9;
+}
+
 .card {
-  background: #ffffff;
-  border-radius: 24rpx;
-  padding: 28rpx;
-  margin: 20rpx 24rpx;
-  box-shadow: 0 4rpx 16rpx rgba(36, 48, 36, 0.05);
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  border-radius: 36rpx;
+  box-shadow: 8rpx 8rpx 0 rgba(47, 42, 38, 0.1);
+  padding: 32rpx;
 }
-.btn-primary {
-  background: #2f9e44;
-  color: #ffffff;
-  border-radius: 48rpx;
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muted {
+  color: #8C8178;
+}
+
+.num {
+  font-family: "DIN Alternate", "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 700;
+  letter-spacing: -1rpx;
+}
+
+.title {
   font-size: 32rpx;
-  padding: 8rpx 0;
+  font-weight: 700;
+  color: #2F2A26;
 }
-.btn-ghost {
-  background: #eaf5ec;
-  color: #2f9e44;
-  border-radius: 48rpx;
+
+.divider {
+  height: 3rpx;
+  background: #EFE3D2;
+  border-radius: 3rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100rpx;
+  border-radius: 28rpx;
   font-size: 30rpx;
-  padding: 8rpx 0;
+  font-weight: 700;
+  border: 3rpx solid #2F2A26;
 }
-.muted { color: #8a938a; font-size: 24rpx; }
-.kcal { color: #e8590c; font-weight: 700; }
-.row { display: flex; align-items: center; }
-.spacer { flex: 1; }
+
+.btn-primary {
+  background: #FF8A3D;
+  color: #FFFFFF;
+  box-shadow: 6rpx 6rpx 0 rgba(47, 42, 38, 0.85);
+}
+
+.btn-primary:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: 2rpx 2rpx 0 rgba(47, 42, 38, 0.85);
+}
+
+.btn-ghost {
+  background: #FFFFFF;
+  color: #2F2A26;
+  box-shadow: 5rpx 5rpx 0 rgba(47, 42, 38, 0.12);
+}
+
+.btn-ghost:active {
+  transform: translate(3rpx, 3rpx);
+  box-shadow: 2rpx 2rpx 0 rgba(47, 42, 38, 0.12);
+}
+
+.chip {
+  padding: 14rpx 32rpx;
+  border-radius: 999rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  color: #6B6157;
+  font-size: 26rpx;
+  box-shadow: 3rpx 3rpx 0 rgba(47, 42, 38, 0.12);
+}
+
+.chip-on {
+  background: #FFC93C;
+  color: #2F2A26;
+  font-weight: 700;
+  box-shadow: 3rpx 3rpx 0 rgba(47, 42, 38, 0.85);
+}
+
+.empty {
+  padding: 80rpx 0;
+  text-align: center;
+  color: #9A9088;
+  font-size: 26rpx;
+}

@@ -1,1 +1,5 @@
-{"navigationBarTitleText":"食热量 · 拍照识热量","usingComponents":{}}
+{
+  "navigationBarTitleText": "食刻",
+  "navigationStyle": "default",
+  "usingComponents": {}
+}

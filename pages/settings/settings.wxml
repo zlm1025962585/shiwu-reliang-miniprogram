@@ -1,0 +1,82 @@
+<view class="page">
+  <view class="card note">
+    <view class="note-t">填一次，以后拍照就能自动认</view>
+    <view class="note-s">默认已填好 DeepSeek（国内可直连、支持读图），你只需要补一个 API Key。Key 只保存在你自己的手机本地，不会上传到任何服务器，也看不到别人的。</view>
+    <view class="note-d">默认地址 {{defaultUrl}} · 默认模型 deepseek-flash</view>
+  </view>
+
+  <view class="card block form">
+    <view class="field">
+      <view class="between">
+        <text class="fl">接口地址</text>
+        <text class="reset" bindtap="onReset">恢复默认</text>
+      </view>
+      <input
+        class="fi-full"
+        value="{{baseUrl}}"
+        bindinput="onBaseUrl"
+        placeholder="{{defaultUrl}}"
+        placeholder-class="ph"
+      />
+      <text class="fh">OpenAI 兼容的 base url，末尾不用带 /chat/completions，程序会自动拼</text>
+    </view>
+
+    <view class="field">
+      <text class="fl">模型</text>
+      <input
+        class="fi-full"
+        value="{{model}}"
+        bindinput="onModel"
+        placeholder="deepseek-flash"
+        placeholder-class="ph"
+      />
+      <text class="fh">必须是能看图的模型</text>
+    </view>
+
+    <view class="field">
+      <view class="between">
+        <text class="fl">API Key</text>
+        <text class="eye" bindtap="toggleKey">{{showKey ? '隐藏' : '显示'}}</text>
+      </view>
+      <input
+        class="fi-full"
+        password="{{!showKey}}"
+        value="{{apiKey}}"
+        bindinput="onKey"
+        placeholder="sk-..."
+        placeholder-class="ph"
+      />
+    </view>
+  </view>
+
+  <view class="btn btn-ghost test" bindtap="onTest">测试连接</view>
+
+  <view class="sec">
+    <view class="sec-t">常用服务，点一下自动填地址和模型</view>
+    <view class="providers">
+      <view
+        class="pv {{item.wide ? 'pv-wide' : ''}}"
+        wx:for="{{providers}}"
+        wx:key="name"
+        data-index="{{index}}"
+        bindtap="useProvider"
+      >
+        <view class="pv-name">
+          <text>{{item.name}}</text>
+          <text class="pv-def" wx:if="{{item.def}}">默认</text>
+        </view>
+        <view class="pv-model">{{item.model}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card tips">
+    <view class="tip-t">配置要点</view>
+    <view class="tip-i">1. Key 从哪来：点上面的服务商卡片会自动填好地址和模型，再打开对应官网注册、创建 API Key（长串字符），粘贴到 Key 输入框。Key 只保存在本机，不会上传到任何服务器，也和其他人的手机不互通。</view>
+    <view class="tip-i">2. 一定要用能看图的模型，纯文本模型会直接报错。</view>
+    <view class="tip-i">3. 提示「域名没进白名单」：开发者工具里勾的「不校验合法域名」只对模拟器生效，真机预览、体验版、正式版一律校验。要去小程序后台「开发管理 → 开发设置 → 服务器域名」把接口域名（如 api.deepseek.com）加进 request 合法域名，域名需已备案、走 HTTPS。</view>
+    <view class="tip-i">4. 模型名过时或服务商换了版本：去对应控制台复制最新模型名，直接改上面的输入框。豆包需要填接入点 ID（ep- 开头）。</view>
+    <view class="tip-i">5. Gemini 走的是官方 OpenAI 兼容地址，需要能访问 Google 的网络环境；想更强可以换成 gemini-3.8-flash 或 gemini-2.5-pro。DeepSeek 要填 deepseek-flash，deepseek-chat 看不了图。</view>
+    <view class="tip-i">6. 识别错了改菜名时会先查内置的 147 条食物库，库里没有才拿菜名问一次模型（纯文字，很快，花少量额度），结果会存在本机，同一道菜不会再问第二次。</view>
+  </view>
+</view>

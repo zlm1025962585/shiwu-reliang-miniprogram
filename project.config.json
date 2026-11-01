@@ -1,1 +1,52 @@
-{"appid":"touristappid","compileType":"miniprogram","condition":{},"description":"拍照识别食物热量微信小程序","libVersion":"3.5.0","packOptions":{"ignore":[],"include":[]},"projectname":"shiwu-reliang","setting":{"bundle":false,"checkInvalidKey":true,"checkSiteMap":true,"compileHotReLoad":false,"enhance":true,"es6":true,"minified":true,"postcss":true,"urlCheck":true,"userConfirmedBundleSwitch":false}}
+{
+  "description": "食刻 - 拍照识别每顿饭热量",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "file",
+        "value": "README.md"
+      }
+    ],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.17.6",
+  "appid": "wx1240668bca24f177",
+  "projectname": "calorie-lens",
+  "miniprogramRoot": "./",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

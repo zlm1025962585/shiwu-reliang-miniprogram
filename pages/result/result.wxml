@@ -1,54 +1,176 @@
-<view wx:if="{{image}}" class="photo-wrap"><image class="photo" src="{{image}}" mode="aspectFill"></image></view>
+<view class="page">
+  <view class="photo-wrap" wx:if="{{image}}">
+    <image class="photo" src="{{image}}" mode="aspectFill"></image>
+    <view class="tip" wx:if="{{note}}">{{note}}</view>
+  </view>
 
-<view class="card" wx:if="{{loading}}">
-  <view class="loading">正在识别照片里的食物…</view>
-  <view class="muted">识别完成后可以调整每样食物的克数，热量会自动重算。</view>
-</view>
+  <view class="card block">
+    <view class="between">
+      <text class="title">识别结果</text>
+      <text class="muted small">{{items.length}} 项</text>
+    </view>
 
-<block wx:else>
-  <view class="demo-banner" wx:if="{{demo}}">演示模式示例结果（示例餐：米饭＋鸡胸肉＋西兰花＋鸡蛋）。在「我的」填入识别接口后，将按你的真实照片识别。</view>
-  <view class="demo-banner error" wx:if="{{error}}">{{error}}</view>
+    <view class="hint" wx:if="{{!items.length}}">
+      没认出食物。点下面的按钮，从内置食物库里挑，几秒钟就能记好。
+    </view>
 
-  <view class="card">
-    <view class="row"><view class="card-title">这一餐</view><view class="spacer"></view><text class="muted">{{meal}}</text></view>
-    <view class="food-row" wx:for="{{items}}" wx:key="index">
-      <view class="food-main">
-        <view class="food-name">{{item.name}} <text class="conf" wx:if="{{item.confidence}}">置信度 {{item.confidenceText}}</text><text class="conf warn" wx:if="{{item.unknown}}">营养库暂无此食物，按 150 千卡/100克估算</text></view>
-        <view class="muted">{{item.per100}} 千卡/100克 · 蛋白 {{item.nProtein}}g 脂肪 {{item.nFat}}g 碳水 {{item.nCarbs}}g</view>
-        <view class="grams-row">
-          <button class="step" data-idx="{{index}}" data-delta="-10" bindtap="changeGrams">−10</button>
-          <input class="grams-input" type="number" value="{{item.grams}}" data-idx="{{index}}" bindblur="inputGrams" />
-          <text class="muted">克</text>
-          <button class="step" data-idx="{{index}}" data-delta="10" bindtap="changeGrams">＋10</button>
-          <view class="spacer"></view>
-          <text class="kcal">{{item.kcal}} 千卡</text>
-          <text class="del" data-idx="{{index}}" bindtap="removeItem">删除</text>
+    <view class="item {{index === 0 ? 'item-first' : ''}}" wx:for="{{items}}" wx:key="uid">
+      <view class="item-main">
+        <view class="name-row">
+          <input
+            class="item-name"
+            value="{{item.name}}"
+            data-index="{{index}}"
+            bindinput="onName"
+            bindblur="onNameBlur"
+            maxlength="24"
+          />
+          <text
+            class="fix {{item.manual ? 'fix-on' : ''}}"
+            data-index="{{index}}"
+            catchtap="openEdit"
+          >{{item.manual ? '已修正' : '修正'}}</text>
         </view>
-        <slider min="10" max="600" step="10" value="{{item.grams}}" data-idx="{{index}}" bindchange="slideGrams" activeColor="#2f9e44" />
+        <view class="item-sub">
+          {{item.kcal}} kcal · 蛋白 {{item.protein}}g · 碳水 {{item.carb}}g · 脂肪 {{item.fat}}g
+        </view>
       </view>
-    </view>
-    <view wx:if="{{!items.length}}" class="muted empty">还没有食物，在下面搜索添加吧。</view>
-
-    <view class="total-row">
-      <text>总热量</text><view class="spacer"></view>
-      <text class="total-kcal">{{total.kcal}} 千卡</text>
-    </view>
-    <view class="row nutrients">
-      <text>蛋白质 {{total.protein}}g</text><text>脂肪 {{total.fat}}g</text><text>碳水 {{total.carbs}}g</text>
-    </view>
-    <button class="btn-primary save-btn" bindtap="save" disabled="{{!items.length}}">保存这一餐</button>
-  </view>
-
-  <view class="card">
-    <view class="card-title">添加食物</view>
-    <input class="search" placeholder="搜索食物，如：米饭 / 鸡胸肉 / 苹果" value="{{keyword}}" bindinput="onSearch" />
-    <view class="pick-list">
-      <view class="pick-item" wx:for="{{candidates}}" wx:key="name" data-name="{{item.name}}" bindtap="addFood">
-        <text>{{item.name}}</text><view class="spacer"></view>
-        <text class="muted">{{item.kcal}} 千卡/100克 · 常见{{item.unit}} {{item.portion}}克</text><text class="add">＋</text>
+      <view class="gram">
+        <input
+          class="gram-input"
+          type="number"
+          value="{{item.gramsText}}"
+          data-index="{{index}}"
+          bindinput="onGrams"
+        />
+        <text class="gram-unit">{{item.unit}}</text>
       </view>
+      <view class="del" data-index="{{index}}" bindtap="onRemove">×</view>
+    </view>
+
+    <view class="add" bindtap="goPickFood">
+      <text class="add-plus">＋</text>
+      <text>手动添加食物</text>
     </view>
   </view>
 
-  <view class="muted foot">热量为估算值：烹饪用油、酱料和实际份量都会影响结果，仅供日常饮食参考。</view>
-</block>
+  <view class="card block">
+    <view class="between">
+      <text class="title">这一餐合计</text>
+      <view class="total">
+        <text class="num t-num">{{total.kcal}}</text>
+        <text class="t-unit">kcal</text>
+      </view>
+    </view>
+    <view class="macro-row">
+      <view class="mrow">
+        <text class="mk">蛋白质</text>
+        <text class="mv2 num">{{total.protein}} g</text>
+      </view>
+      <view class="mrow">
+        <text class="mk">碳水</text>
+        <text class="mv2 num">{{total.carb}} g</text>
+      </view>
+      <view class="mrow">
+        <text class="mk">脂肪</text>
+        <text class="mv2 num">{{total.fat}} g</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card block">
+    <text class="title">算在哪一餐</text>
+    <view class="chips">
+      <view
+        class="chip {{mealType === item.key ? 'chip-on' : ''}}"
+        wx:for="{{mealTypes}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onPickType"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="btn btn-primary" bindtap="onSave">保存这一餐</view>
+    <view class="foot-note">营养数据由模型估算，认错了点每行右侧的「修正」改</view>
+  </view>
+
+  <view class="mask" wx:if="{{edit}}" bindtap="closeEdit"></view>
+  <view class="sheet" wx:if="{{edit}}" catchtap="noop">
+    <view class="sheet-handle"></view>
+    <view class="between">
+      <view class="s-head">
+        <text class="s-title">手动修正</text>
+        <text class="s-for">{{edit.name}} · 这一份</text>
+      </view>
+      <text class="s-x" bindtap="closeEdit">✕</text>
+    </view>
+
+    <view class="s-hint">填的是这一份的总量，保存后合计会自动重算。改份量时其余数值按比例跟着走。</view>
+
+    <view class="frow">
+      <text class="flabel">份量</text>
+      <input
+        class="finput"
+        type="number"
+        value="{{edit.gramsText}}"
+        bindinput="onEditGrams"
+      />
+      <text class="funit">{{edit.unit}}</text>
+    </view>
+
+    <view class="frow">
+      <text class="flabel">热量</text>
+      <input
+        class="finput"
+        type="digit"
+        value="{{edit.kcalText}}"
+        data-field="kcalText"
+        bindinput="onEditField"
+      />
+      <text class="funit">kcal</text>
+    </view>
+
+    <view class="frow">
+      <text class="flabel">蛋白质</text>
+      <input
+        class="finput"
+        type="digit"
+        value="{{edit.pText}}"
+        data-field="pText"
+        bindinput="onEditField"
+      />
+      <text class="funit">g</text>
+    </view>
+
+    <view class="frow">
+      <text class="flabel">碳水</text>
+      <input
+        class="finput"
+        type="digit"
+        value="{{edit.cText}}"
+        data-field="cText"
+        bindinput="onEditField"
+      />
+      <text class="funit">g</text>
+    </view>
+
+    <view class="frow">
+      <text class="flabel">脂肪</text>
+      <input
+        class="finput"
+        type="digit"
+        value="{{edit.fText}}"
+        data-field="fText"
+        bindinput="onEditField"
+      />
+      <text class="funit">g</text>
+    </view>
+
+    <view class="s-btns">
+      <view class="sbtn sbtn-ghost" bindtap="goRepick">从库里重选</view>
+      <view class="sbtn sbtn-main" bindtap="saveEdit">保存</view>
+    </view>
+  </view>
+</view>

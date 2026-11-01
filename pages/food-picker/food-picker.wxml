@@ -1,0 +1,81 @@
+<view class="page">
+  <view class="search">
+    <view class="search-ico">⌕</view>
+    <input
+      class="search-input"
+      placeholder="搜索食物，如 米饭 / 鸡胸肉"
+      placeholder-class="ph"
+      value="{{keyword}}"
+      bindinput="onSearch"
+      confirm-type="search"
+    />
+  </view>
+
+  <scroll-view class="cats" scroll-x="true" show-scrollbar="false">
+    <view
+      class="cat {{cat === item.key ? 'cat-on' : ''}}"
+      wx:for="{{cats}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onCat"
+    >{{item.label}}</view>
+  </scroll-view>
+
+  <view class="list">
+    <view
+      class="fitem"
+      wx:for="{{list}}"
+      wx:key="name"
+      data-index="{{index}}"
+      bindtap="onPick"
+    >
+      <view class="f-left">
+        <view class="f-name">{{item.name}}</view>
+        <view class="f-desc">{{item.desc}}</view>
+      </view>
+      <view class="f-kcal">
+        <text class="num f-num">{{item.kcal}}</text>
+        <text class="f-unit">/ 100g</text>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!list.length}}">没找到，换个词试试</view>
+  </view>
+
+  <view class="mask" wx:if="{{sheet}}" bindtap="closeSheet"></view>
+  <view class="sheet" wx:if="{{sheet}}" catchtap="noop">
+    <view class="sheet-handle"></view>
+    <view class="between">
+      <text class="s-name">{{sheet.name}}</text>
+      <text class="s-kcal num">{{sheet.kcal}} kcal</text>
+    </view>
+
+    <view class="s-grams">
+      <text class="s-g">{{sheet.grams}}</text>
+      <text class="s-g-unit">克</text>
+    </view>
+
+    <slider
+      min="10"
+      max="500"
+      step="5"
+      value="{{sheet.grams}}"
+      activeColor="#FF8A3D"
+      backgroundColor="#EFE3D2"
+      block-size="22"
+      bindchanging="onSlide"
+      bindchange="onSlide"
+    />
+
+    <view class="quicks">
+      <view
+        class="qchip {{sheet.grams === item ? 'qchip-on' : ''}}"
+        wx:for="{{quick}}"
+        wx:key="*this"
+        data-g="{{item}}"
+        bindtap="onQuick"
+      >{{item}}g</view>
+    </view>
+
+    <view class="btn btn-primary s-btn" bindtap="onConfirm">{{replacing ? '替换这一项' : '加入这一餐'}}</view>
+  </view>
+</view>

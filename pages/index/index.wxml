@@ -1,47 +1,89 @@
-<view class="hero">
-  <view class="hero-title">拍照，看看这顿多少热量</view>
-  <view class="hero-sub">拍下或选一张食物照片，估算热量和营养</view>
-  <view class="hero-btns">
-    <button class="btn-primary hero-btn" bindtap="takePhoto">📷 拍照识别</button>
-    <button class="btn-ghost hero-btn" bindtap="chooseAlbum">🖼 从相册选</button>
+<view class="page">
+  <view class="head">
+    <view class="date">{{dateLabel}}</view>
+    <view class="greet">{{greeting}}</view>
   </view>
-  <view class="muted hero-note" wx:if="{{!hasEndpoint}}">当前为演示模式：可在结果页体验示例识别，也可手动搜索食物添加（热量计算是真实的）。在「我的」填入识别接口后即为真实 AI 识别。</view>
-  <view class="hero-manual" bindtap="manualEntry">不拍照，手动记录一餐 ›</view>
-</view>
 
-<view class="card">
-  <view class="row">
-    <view>
-      <view class="card-title">今日已摄入</view>
-      <view><text class="big-kcal">{{today.kcal}}</text> <text class="muted">/ {{goal}} 千卡</text></view>
+  <view class="card hero">
+    <view class="between hero-top">
+      <text class="muted small">今日已摄入</text>
+      <text class="muted small">目标 {{target}} kcal</text>
     </view>
-    <view class="spacer"></view>
-    <view class="ring-wrap">
-      <view class="ring"><view class="ring-fill" style="height: {{percent}}%;"></view><text class="ring-text">{{percent}}%</text></view>
-    </view>
-  </view>
-  <view class="bar"><view class="bar-fill" style="width: {{percent}}%;"></view></view>
-  <view class="row nutrients">
-    <text>蛋白质 {{today.protein}}g</text><text>脂肪 {{today.fat}}g</text><text>碳水 {{today.carbs}}g</text>
-    <view class="spacer"></view>
-    <text class="muted" wx:if="{{remain >= 0}}">还可吃 {{remain}} 千卡</text>
-    <text class="over" wx:else>已超出 {{over}} 千卡</text>
-  </view>
-</view>
 
-<view class="card" wx:if="{{recent.length}}">
-  <view class="row"><view class="card-title">最近记录</view><view class="spacer"></view><text class="muted" bindtap="goHistory">全部 ›</text></view>
-  <view class="recent-item" wx:for="{{recent}}" wx:key="id" bindtap="goHistory">
-    <image wx:if="{{item.image}}" class="thumb" src="{{item.image}}" mode="aspectFill"></image>
-    <view class="recent-main">
-      <view>{{item.meal}} · {{item.names}}</view>
-      <view class="muted">{{item.timeText}}</view>
+    <view class="hero-num">
+      <text class="num big {{over ? 'over' : ''}}">{{total.kcal}}</text>
+      <text class="unit">kcal</text>
     </view>
-    <view class="kcal">{{item.totalKcal}} 千卡</view>
-  </view>
-</view>
 
-<view class="card">
-  <view class="card-title">小提示</view>
-  <view class="muted tip">照片尽量俯拍、光线充足、食物不要互相遮挡，识别更准。份量估算会有误差，结果页可以手动调整克数。</view>
+    <view class="bar">
+      <view class="bar-fill {{over ? 'bar-over' : ''}}" style="width: {{percent}}%"></view>
+    </view>
+
+    <view class="between hero-foot">
+      <text class="foot-text {{over ? 'over' : ''}}">{{remainText}}</text>
+      <text class="muted small">{{percent}}%</text>
+    </view>
+
+    <view class="macros">
+      <view class="macro">
+        <text class="mv num">{{total.protein}}</text>
+        <text class="ml">🥩 蛋白质 g</text>
+      </view>
+      <view class="macro-line"></view>
+      <view class="macro">
+        <text class="mv num">{{total.carb}}</text>
+        <text class="ml">🍚 碳水 g</text>
+      </view>
+      <view class="macro-line"></view>
+      <view class="macro">
+        <text class="mv num">{{total.fat}}</text>
+        <text class="ml">🥑 脂肪 g</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="snap" bindtap="onTapSnap">
+    <view class="snap-icon">📷</view>
+    <view class="snap-body">
+      <view class="snap-t">拍照记这一餐</view>
+      <view class="snap-s">拍一张，自动认出食物和热量</view>
+    </view>
+    <view class="snap-arrow">→</view>
+  </view>
+
+  <view class="section" wx:if="{{count > 0}}">
+    <view class="section-head between">
+      <text class="title">今天的记录</text>
+      <text class="muted small">{{count}} 条 · 长按可删</text>
+    </view>
+
+    <view class="card group" wx:for="{{groups}}" wx:key="key">
+      <view class="between group-head">
+        <text class="g-label">{{item.icon}} {{item.label}}</text>
+        <text class="g-kcal num">{{item.kcal}} kcal</text>
+      </view>
+
+      <view
+        class="meal"
+        wx:for="{{item.meals}}"
+        wx:for-item="meal"
+        wx:key="id"
+        data-id="{{meal.id}}"
+        bindlongpress="onDelete"
+      >
+        <image class="thumb" src="{{meal.image}}" mode="aspectFill" wx:if="{{meal.image}}"></image>
+        <view class="thumb thumb-ph" wx:else>🍽</view>
+        <view class="meal-body">
+          <view class="meal-name">{{meal.itemsText}}</view>
+          <view class="meal-sub">{{meal.time}} · {{meal.kcal}} kcal</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card empty-card" wx:else>
+    <view class="empty-emoji">🍚</view>
+    <view class="empty-t">今天还没记录</view>
+    <view class="empty-s">拍一张，看看这顿吃了多少</view>
+  </view>
 </view>

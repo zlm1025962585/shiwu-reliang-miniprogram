@@ -1,0 +1,211 @@
+.page {
+  padding: 24rpx 28rpx 200rpx;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 24rpx;
+  border-radius: 26rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  box-shadow: 6rpx 6rpx 0 rgba(47, 42, 38, 0.12);
+}
+
+.search-ico {
+  font-size: 32rpx;
+  color: #A6957F;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  height: 90rpx;
+}
+
+.ph {
+  color: #C9BBA8;
+}
+
+.cats {
+  margin-top: 26rpx;
+  white-space: nowrap;
+}
+
+.cat {
+  display: inline-block;
+  padding: 12rpx 30rpx;
+  margin-right: 14rpx;
+  border-radius: 999rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  color: #8C8178;
+  font-size: 26rpx;
+  box-shadow: 3rpx 3rpx 0 rgba(47, 42, 38, 0.1);
+}
+
+.cat-on {
+  background: #FFC93C;
+  color: #2F2A26;
+  font-weight: 700;
+  box-shadow: 3rpx 3rpx 0 rgba(47, 42, 38, 0.85);
+}
+
+.list {
+  margin-top: 26rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  border-radius: 34rpx;
+  padding: 0 26rpx;
+  box-shadow: 8rpx 8rpx 0 rgba(47, 42, 38, 0.1);
+}
+
+.fitem {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 0;
+  border-bottom: 3rpx dashed #F5EDE0;
+}
+
+.fitem:last-child {
+  border-bottom: none;
+}
+
+.fitem:active {
+  opacity: 0.6;
+}
+
+.f-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.f-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2F2A26;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.f-desc {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #A6957F;
+}
+
+.f-kcal {
+  display: flex;
+  align-items: baseline;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.f-num {
+  font-size: 34rpx;
+  color: #FF8A3D;
+}
+
+.f-unit {
+  margin-left: 4rpx;
+  font-size: 20rpx;
+  color: #B7A894;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(47, 42, 38, 0.42);
+  z-index: 10;
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+  padding: 20rpx 32rpx 56rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  border-bottom: none;
+  border-radius: 40rpx 40rpx 0 0;
+}
+
+.sheet-handle {
+  width: 80rpx;
+  height: 8rpx;
+  border-radius: 999rpx;
+  background: #E2D5C3;
+  margin: 0 auto 24rpx;
+}
+
+.s-name {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.s-kcal {
+  font-size: 32rpx;
+  color: #FF8A3D;
+}
+
+.s-grams {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 30rpx 0 10rpx;
+}
+
+.s-g {
+  font-size: 80rpx;
+  font-weight: 700;
+  font-family: "DIN Alternate", "Helvetica Neue", sans-serif;
+  color: #2F2A26;
+  line-height: 1;
+}
+
+.s-g-unit {
+  margin-left: 8rpx;
+  font-size: 26rpx;
+  color: #A6957F;
+}
+
+.quicks {
+  display: flex;
+  margin-top: 10rpx;
+}
+
+.qchip {
+  flex: 1;
+  margin-right: 14rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  color: #8C8178;
+  font-size: 26rpx;
+}
+
+.qchip:last-child {
+  margin-right: 0;
+}
+
+.qchip-on {
+  background: #FFC93C;
+  color: #2F2A26;
+  font-weight: 700;
+}
+
+.s-btn {
+  margin-top: 36rpx;
+}

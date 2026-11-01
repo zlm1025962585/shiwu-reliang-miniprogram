@@ -1,0 +1,163 @@
+.note {
+  padding: 30rpx 32rpx;
+  background: #FFF3C9;
+}
+
+.note-t {
+  font-size: 29rpx;
+  font-weight: 700;
+  color: #6B4E10;
+}
+
+.note-s {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #8A6A1F;
+  line-height: 1.6;
+}
+
+.note-d {
+  margin-top: 14rpx;
+  padding-top: 14rpx;
+  border-top: 2rpx dashed rgba(107, 78, 16, 0.22);
+  font-size: 21rpx;
+  color: #A98436;
+}
+
+.reset {
+  padding: 4rpx 0 4rpx 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #E8722A;
+}
+
+.block {
+  margin-top: 26rpx;
+}
+
+.form {
+  padding: 8rpx 32rpx;
+}
+
+.field {
+  padding: 26rpx 0;
+  border-bottom: 3rpx dashed #EFE3D2;
+}
+
+.field:last-child {
+  border-bottom: none;
+}
+
+.fl {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #8C8178;
+}
+
+.fi-full {
+  margin-top: 14rpx;
+  height: 62rpx;
+  font-size: 28rpx;
+  color: #2F2A26;
+  font-weight: 600;
+}
+
+.ph {
+  color: #C9BBA8;
+  font-weight: 400;
+}
+
+.fh {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #B7A894;
+}
+
+.eye {
+  font-size: 23rpx;
+  font-weight: 600;
+  color: #E8722A;
+}
+
+.test {
+  margin-top: 26rpx;
+}
+
+.sec {
+  margin-top: 42rpx;
+}
+
+.sec-t {
+  padding: 0 8rpx 18rpx;
+  font-size: 24rpx;
+  color: #A6957F;
+}
+
+.providers {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8rpx;
+}
+
+.pv {
+  width: calc(50% - 16rpx);
+  margin: 8rpx;
+  padding: 22rpx 24rpx;
+  background: #FFFFFF;
+  border: 3rpx solid #2F2A26;
+  border-radius: 22rpx;
+  box-shadow: 5rpx 5rpx 0 rgba(47, 42, 38, 0.12);
+}
+
+.pv:active {
+  transform: translate(3rpx, 3rpx);
+  box-shadow: 2rpx 2rpx 0 rgba(47, 42, 38, 0.12);
+}
+
+.pv-wide {
+  width: calc(100% - 16rpx);
+}
+
+.pv-name {
+  font-size: 27rpx;
+  font-weight: 700;
+  color: #2F2A26;
+}
+
+.pv-def {
+  margin-left: 8rpx;
+  padding: 2rpx 8rpx;
+  font-size: 18rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+  background: #FF8A3D;
+  border-radius: 6rpx;
+  vertical-align: middle;
+}
+
+.pv-model {
+  margin-top: 6rpx;
+  font-size: 20rpx;
+  color: #A6957F;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tips {
+  margin-top: 34rpx;
+  padding: 30rpx 32rpx;
+}
+
+.tip-t {
+  font-size: 27rpx;
+  font-weight: 700;
+}
+
+.tip-i {
+  margin-top: 14rpx;
+  font-size: 23rpx;
+  color: #7A6E62;
+  line-height: 1.65;
+}

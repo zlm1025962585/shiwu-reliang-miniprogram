@@ -1,1 +1,46 @@
-{"lazyCodeLoading":"requiredComponents","pages":["pages/index/index","pages/result/result","pages/history/history","pages/mine/mine"],"sitemapLocation":"sitemap.json","style":"v2","tabBar":{"backgroundColor":"#ffffff","borderStyle":"black","color":"#8a938a","list":[{"pagePath":"pages/index/index","text":"首页"},{"pagePath":"pages/history/history","text":"记录"},{"pagePath":"pages/mine/mine","text":"我的"}],"selectedColor":"#2f9e44"},"window":{"backgroundColor":"#f6f8f6","navigationBarBackgroundColor":"#2f9e44","navigationBarTextStyle":"white","navigationBarTitleText":"食热量 · 拍照识热量"}}
+{
+  "pages": [
+    "pages/index/index",
+    "pages/history/history",
+    "pages/profile/profile",
+    "pages/result/result",
+    "pages/food-picker/food-picker",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFF6E9",
+    "navigationBarTitleText": "食刻",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFF6E9"
+  },
+  "tabBar": {
+    "color": "#A6957F",
+    "selectedColor": "#FF8A3D",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "记录",
+        "iconPath": "images/tab-record.png",
+        "selectedIconPath": "images/tab-record-active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "images/tab-history.png",
+        "selectedIconPath": "images/tab-history-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-mine.png",
+        "selectedIconPath": "images/tab-mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
