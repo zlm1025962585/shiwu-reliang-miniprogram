@@ -1,0 +1,38 @@
+<view class="card">
+  <view class="card-title">最近 7 天热量（千卡）</view>
+  <view class="chart">
+    <view class="col" wx:for="{{week}}" wx:key="dateStr">
+      <view class="col-kcal">{{item.kcal || ""}}</view>
+      <view class="col-bar" style="height: {{item.h}}rpx;"></view>
+      <view class="muted">{{item.label}}</view>
+    </view>
+  </view>
+  <view class="row nutrients">
+    <text>今日 {{today.kcal}} 千卡</text><text>蛋白 {{today.protein}}g</text><text>脂肪 {{today.fat}}g</text><text>碳水 {{today.carbs}}g</text>
+  </view>
+</view>
+
+<view class="card" wx:if="{{!groups.length}}">
+  <view class="muted empty">还没有记录，去首页拍一张食物照片吧。</view>
+</view>
+
+<block wx:for="{{groups}}" wx:key="dateStr" wx:for-item="g">
+  <view class="date-head">{{g.dateStr}} · 共 {{g.total}} 千卡</view>
+  <view class="card record" wx:for="{{g.records}}" wx:key="id" wx:for-item="r">
+    <view class="row">
+      <image wx:if="{{r.image}}" class="thumb" src="{{r.image}}" mode="aspectFill"></image>
+      <view class="rec-main">
+        <view>{{r.meal}}<text class="muted"> {{r.timeText}}</text><text class="demo-tag" wx:if="{{r.demo}}">演示</text></view>
+        <view class="muted">{{r.names}}</view>
+      </view>
+      <view class="kcal">{{r.totalKcal}} 千卡</view>
+    </view>
+    <view class="row rec-foot">
+      <text class="muted">蛋白 {{r.totalProtein}}g · 脂肪 {{r.totalFat}}g · 碳水 {{r.totalCarbs}}g</text>
+      <view class="spacer"></view>
+      <text class="del" data-id="{{r.id}}" bindtap="remove">删除</text>
+    </view>
+  </view>
+</block>
+
+<view class="clear" wx:if="{{groups.length}}" bindtap="clearAll">清空全部记录</view>

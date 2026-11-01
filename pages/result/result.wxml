@@ -1,0 +1,54 @@
+<view wx:if="{{image}}" class="photo-wrap"><image class="photo" src="{{image}}" mode="aspectFill"></image></view>
+
+<view class="card" wx:if="{{loading}}">
+  <view class="loading">正在识别照片里的食物…</view>
+  <view class="muted">识别完成后可以调整每样食物的克数，热量会自动重算。</view>
+</view>
+
+<block wx:else>
+  <view class="demo-banner" wx:if="{{demo}}">演示模式示例结果（示例餐：米饭＋鸡胸肉＋西兰花＋鸡蛋）。在「我的」填入识别接口后，将按你的真实照片识别。</view>
+  <view class="demo-banner error" wx:if="{{error}}">{{error}}</view>
+
+  <view class="card">
+    <view class="row"><view class="card-title">这一餐</view><view class="spacer"></view><text class="muted">{{meal}}</text></view>
+    <view class="food-row" wx:for="{{items}}" wx:key="index">
+      <view class="food-main">
+        <view class="food-name">{{item.name}} <text class="conf" wx:if="{{item.confidence}}">置信度 {{item.confidenceText}}</text><text class="conf warn" wx:if="{{item.unknown}}">营养库暂无此食物，按 150 千卡/100克估算</text></view>
+        <view class="muted">{{item.per100}} 千卡/100克 · 蛋白 {{item.nProtein}}g 脂肪 {{item.nFat}}g 碳水 {{item.nCarbs}}g</view>
+        <view class="grams-row">
+          <button class="step" data-idx="{{index}}" data-delta="-10" bindtap="changeGrams">−10</button>
+          <input class="grams-input" type="number" value="{{item.grams}}" data-idx="{{index}}" bindblur="inputGrams" />
+          <text class="muted">克</text>
+          <button class="step" data-idx="{{index}}" data-delta="10" bindtap="changeGrams">＋10</button>
+          <view class="spacer"></view>
+          <text class="kcal">{{item.kcal}} 千卡</text>
+          <text class="del" data-idx="{{index}}" bindtap="removeItem">删除</text>
+        </view>
+        <slider min="10" max="600" step="10" value="{{item.grams}}" data-idx="{{index}}" bindchange="slideGrams" activeColor="#2f9e44" />
+      </view>
+    </view>
+    <view wx:if="{{!items.length}}" class="muted empty">还没有食物，在下面搜索添加吧。</view>
+
+    <view class="total-row">
+      <text>总热量</text><view class="spacer"></view>
+      <text class="total-kcal">{{total.kcal}} 千卡</text>
+    </view>
+    <view class="row nutrients">
+      <text>蛋白质 {{total.protein}}g</text><text>脂肪 {{total.fat}}g</text><text>碳水 {{total.carbs}}g</text>
+    </view>
+    <button class="btn-primary save-btn" bindtap="save" disabled="{{!items.length}}">保存这一餐</button>
+  </view>
+
+  <view class="card">
+    <view class="card-title">添加食物</view>
+    <input class="search" placeholder="搜索食物，如：米饭 / 鸡胸肉 / 苹果" value="{{keyword}}" bindinput="onSearch" />
+    <view class="pick-list">
+      <view class="pick-item" wx:for="{{candidates}}" wx:key="name" data-name="{{item.name}}" bindtap="addFood">
+        <text>{{item.name}}</text><view class="spacer"></view>
+        <text class="muted">{{item.kcal}} 千卡/100克 · 常见{{item.unit}} {{item.portion}}克</text><text class="add">＋</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="muted foot">热量为估算值：烹饪用油、酱料和实际份量都会影响结果，仅供日常饮食参考。</view>
+</block>

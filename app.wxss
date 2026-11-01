@@ -1,0 +1,31 @@
+page {
+  background: #f6f8f6;
+  color: #243024;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+}
+.card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  margin: 20rpx 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(36, 48, 36, 0.05);
+}
+.btn-primary {
+  background: #2f9e44;
+  color: #ffffff;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  padding: 8rpx 0;
+}
+.btn-ghost {
+  background: #eaf5ec;
+  color: #2f9e44;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  padding: 8rpx 0;
+}
+.muted { color: #8a938a; font-size: 24rpx; }
+.kcal { color: #e8590c; font-weight: 700; }
+.row { display: flex; align-items: center; }
+.spacer { flex: 1; }

@@ -1,0 +1,23 @@
+<view class="card">
+  <view class="card-title">每日热量目标</view>
+  <view class="row"><text class="goal-num">{{dailyGoal}}</text><text class="muted">千卡 / 天</text></view>
+  <slider min="1000" max="3500" step="50" value="{{dailyGoal}}" bindchange="goalChange" activeColor="#2f9e44" />
+  <view class="muted">一般参考：久坐女性约 1600–1800，久坐男性约 2000–2200，运动量大可适当上调。</view>
+</view>
+
+<view class="card">
+  <view class="card-title">AI 识别接口</view>
+  <view class="muted desc">留空 = 演示模式。部署项目里的云函数 recognizeFood 后，把接口地址填在这里保存，即可按真实照片识别。接口需为 HTTPS 且已在小程序后台配置为合法域名（云开发云函数可免域名配置，见 README）。</view>
+  <input class="endpoint" placeholder="https://你的接口地址/recognize" value="{{recognizeEndpoint}}" bindinput="endpointInput" />
+  <button class="btn-primary" bindtap="saveSettings">保存设置</button>
+  <view class="status muted" wx:if="{{recognizeEndpoint}}">当前模式：真实识别</view>
+  <view class="status muted" wx:else>当前模式：演示</view>
+</view>
+
+<view class="card">
+  <view class="card-title">关于</view>
+  <view class="muted desc">「食热量」通过照片识别食物种类并估算份量，再用本地营养库计算热量。营养数值为每 100 克的平均估算，烹饪方式、用油和酱料都会带来误差，仅供日常饮食管理参考，不能替代医生或营养师建议。</view>
+  <view class="muted desc">本地食物库共 {{foodCount}} 种常见食物，记录只保存在你的手机本地，不会上传。</view>
+</view>
+
+<button class="btn-ghost danger" bindtap="clearData">清空全部饮食记录</button>

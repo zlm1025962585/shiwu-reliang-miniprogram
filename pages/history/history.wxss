@@ -1,0 +1,15 @@
+.card-title { font-size: 30rpx; font-weight: 600; margin-bottom: 16rpx; }
+.chart { display: flex; align-items: flex-end; gap: 10rpx; height: 240rpx; padding-top: 10rpx; }
+.col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6rpx; height: 100%; }
+.col-kcal { font-size: 20rpx; color: #e8590c; }
+.col-bar { width: 44rpx; background: linear-gradient(180deg, #40b35a, #2f9e44); border-radius: 10rpx 10rpx 0 0; min-height: 6rpx; }
+.nutrients { gap: 22rpx; font-size: 25rpx; margin-top: 14rpx; flex-wrap: wrap; }
+.date-head { margin: 26rpx 30rpx 2rpx; font-weight: 700; }
+.record { margin-top: 14rpx; }
+.thumb { width: 96rpx; height: 96rpx; border-radius: 16rpx; background: #eef3ee; }
+.rec-main { flex: 1; margin-left: 18rpx; }
+.demo-tag { background: #fff4e0; color: #92580a; font-size: 20rpx; border-radius: 8rpx; padding: 2rpx 10rpx; margin-left: 10rpx; }
+.rec-foot { margin-top: 12rpx; }
+.del { color: #e03131; font-size: 24rpx; }
+.empty { padding: 20rpx 0; text-align: center; }
+.clear { text-align: center; color: #e03131; margin: 34rpx 0 50rpx; font-size: 26rpx; }

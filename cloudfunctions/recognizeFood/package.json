@@ -1,0 +1,1 @@
+{"dependencies":{"wx-server-sdk":"~2.6.3"},"description":"食物照片识别云函数（调用多模态视觉模型）","main":"index.js","name":"recognizeFood","version":"1.0.0"}
