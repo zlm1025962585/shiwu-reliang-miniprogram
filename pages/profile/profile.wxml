@@ -104,5 +104,6 @@
     </view>
   </view>
 
-  <view class="ver" bindlongpress="onVerLong">食刻 v1.1 · 营养数据为估算值，仅供日常参考</view>
+  <view class="ver" bindlongpress="onVerLong">咔嚓热量计 v1.1 · 营养数据为估算值，仅供日常参考</view>
 </view>
+

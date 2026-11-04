@@ -10,7 +10,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#FFF6E9",
-    "navigationBarTitleText": "食刻",
+    "navigationBarTitleText": "咔嚓热量计",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFF6E9"
   },
@@ -44,3 +44,4 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }
+

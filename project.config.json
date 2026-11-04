@@ -1,5 +1,5 @@
 {
-  "description": "食刻 - 拍照识别每顿饭热量",
+  "description": "咔嚓热量计 - 拍照识别食物热量 · 每日记录 · 本地运行",
   "packOptions": {
     "ignore": [
       {
@@ -50,3 +50,4 @@
     "tabSize": 2
   }
 }
+
